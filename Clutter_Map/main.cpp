@@ -1,23 +1,25 @@
+#include <iostream>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
+
+#include <QDebug>
+
+using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    QApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
+    QVector<int> vec;
 
-    QWidget widget;
-    widget.resize(640, 480);
-    widget.setWindowTitle("Hello, world!!!");
+    int i;
+    float r,f,q;
 
-    QGridLayout *gridLayout = new QGridLayout(&widget);
-
-    QLabel * label = new QLabel("Hello, world!!!");
-    label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-    gridLayout->addWidget(label);
-
-    widget.show();
+for (i=1; i<=3; i++)
+{
+    vec.push_back(10); // добавляем в конец вектора элемент
+    vec.push_back(15);
+    vec.push_back(20);
+}
+    qDebug() << vec;
 
     return app.exec();
 }

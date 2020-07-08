@@ -14,5 +14,3 @@ add_executable(HelloWorld ${SOURCE_FILES})
 
 # указываем, какие библиотеки необходимо подключить
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
-target_link_libraries(${PROJECT_NAME} Qt5::Gui)
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
