@@ -5,21 +5,27 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
     QCoreApplication app(argc, argv);
+
     QVector<int> vec;
 
-    int i;
-    float r,f,q;
+    int i, a=0, N=10;
 
-for (i=1; i<=3; i++)
+    int *KT=vec.data();
+
+    for (i=0; i<=N; i++)
 {
-    vec.push_back(10); // добавляем в конец вектора элемент
-    vec.push_back(15);
-    vec.push_back(20);
+    cout << KT[i];
+    if (i>0)
+    {
+    KT[i-1]=KT[i-1]*10;
+    }
 }
-    qDebug() << vec;
+
+    qDebug()<<vec;
 
     return app.exec();
 }
