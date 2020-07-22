@@ -12,20 +12,31 @@ int main(int argc, char *argv[])
 
     QVector<int> vec;
 
-    int i, a=0, N=10;
+    int l[10];
 
-    for (i=0; i<N; i++)
+    int i, a=0, N=9;
+
+
+    for (i=0; i<=N; i++)
 {
-    vec.push_back(i+1);
+    l[i]=i*3+1;
+}
+
+
+    for (i=0; i<=N; i++)
+{
+    vec.push_back(l[i]);
 }
 
     int *KT=vec.data();
 
-    for (i=0; i<N; i++)
+    for (i=0; i<=N; i++)
 {
     KT[i]=KT[i]*2;
+    qDebug()<<KT[i];
 }
 
+    qDebug()<<" ";
     qDebug()<<vec;
     return app.exec();
 }
