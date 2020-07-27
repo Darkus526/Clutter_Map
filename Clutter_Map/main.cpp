@@ -1,26 +1,32 @@
 #include <iostream>
 #include <QtWidgets/QApplication>
-
+#include <cstdlib>
+#include <cmath>
 #include <QDebug>
 
 using namespace std;
 
-int main(int argc, char *argv[])
+double okr (double value)
+{
+    return value=round(value*100)/100;
+}
+
+int main(int argc, char **argv)
 {
 
     QCoreApplication app(argc, argv);
 
     QVector <QVector <QVector <int> > > vec;
 
-    int KT[4][4] = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
+    int KT[5][3] = { {1, 2, 3}, {5, 6, 7}, {9, 10, 11}, {13, 14, 15}, {17, 18, 19} };
 
     QVector <QVector <int> > matrix;
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 5; i++)
     {
         QVector<int> tempVector;
 
-        for(int j = 0; j < 4; j++)
+        for(int j = 0; j < 3; j++)
         {
             tempVector.push_back(KT[i][j]);
             qDebug() << "Value " << j << ": " << tempVector.value(j);
@@ -31,40 +37,17 @@ int main(int argc, char *argv[])
 
     vec.push_back(matrix);
 
-    qDebug() << "myVector: " << vec;
+    qDebug() << " ";
+    qDebug() << vec;
+
+
 
     /*
-    QVector<int> vec;
+    double K;
 
-    int l[10];
+    K=okr(0.567894);
 
-    int i, N=9;
-
-
-    for (i=0; i<=N; i++)
-{
-    l[i]=i*3+1;
-}
-
-
-    for (i=0; i<=N; i++)
-{
-    vec.push_back(l[i]);
-}
-
-    qDebug()<<vec;
-
-    int *KT=vec.data();
-
-    for (i=0; i<=N; i++)
-{
-    KT[i]=KT[i]*2;
-}
-
-
-    qDebug()<<" ";
-    qDebug()<<vec;
-
+    qDebug()<<K;
     */
 
     return app.exec();
