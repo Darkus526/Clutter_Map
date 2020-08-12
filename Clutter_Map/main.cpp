@@ -4,12 +4,89 @@
 #include <cmath>
 #include <QDebug>
 #include <math.h>
+#include <unistd.h>
 
 using namespace std;
 
-
-int main(int argc, char **argv)
+class Imitator
 {
+public:
+
+    float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
+    int N;
+
+    float Otmetki (float P)
+    {
+        float V;
+
+        //Вычисление объёма заданной области
+        V=((AzMax-AzMin)/360)*2/3*3.14*(pow((RastMax-RastMin), 3))*(1-(cos(ZenMax-ZenMin))/2);
+
+        //Вычисление количества ложных помех на основе заданной плотности и расчитанного объёма
+        N=round(P*V);
+
+        return N;
+    }
+
+    float KT (int i)
+    {
+        float Rast, Az, Zen;
+
+        Rast=RastMin + rand() % int(RastMax-RastMin);
+        Zen=ZenMin + rand() % int(ZenMax-ZenMin);
+        Az=AzMin + rand() % int(AzMax-AzMin);
+
+
+
+    }
+
+};
+
+class Cont
+{
+  public:
+
+    Imitator N{};
+
+    int N=N.Otmetki (2);
+
+    QVector <int> matrix;
+
+    for(int i = 0; i < N; i++)
+    {
+        matrix.push_back()
+    }
+};
+
+
+int main()
+{
+    auto start = clock();
+    srand( time( 0 ) );
+    int N1;
+
+    Imitator N{};
+
+
+
+    N1=N.Otmetki (2);
+
+    cout<<N1<<endl<<endl;
+
+    while (true)
+    {
+        N.KT();
+        sleep(6);
+    }
+
+    /*
+    float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
+    float V;
+    V=((AzMax-AzMin)/360)*2/3*3.14*(pow((RastMax-RastMin), 3))*(1-(cos(ZenMax-ZenMin))/2);
+    cout<<V<<endl;
+    */
+
+    /*
     setlocale(LC_ALL, "Russian");
     srand( time( 0 ) );
 
@@ -106,5 +183,5 @@ int main(int argc, char **argv)
     }
     cout<<endl<<endl;
     cout<<"Плотность ложных помех в области " <<N0/((4/3)*M_PI*R*R*R)<<endl<<endl;
-
+*/
 }
