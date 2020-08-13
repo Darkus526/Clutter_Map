@@ -28,7 +28,7 @@ public:
         return N;
     }
 
-    float KT (int i)
+    int* KT (int j)
     {
         float Rast, Az, Zen;
 
@@ -36,6 +36,12 @@ public:
         Zen=ZenMin + rand() % int(ZenMax-ZenMin);
         Az=AzMin + rand() % int(AzMax-AzMin);
 
+
+        int *k=&j;
+
+        cout<<*k<<endl;
+
+        return &j;
 
 
     }
@@ -46,15 +52,26 @@ class Cont
 {
   public:
 
+    QVector <int*> matrix;
+
+    void Vozvrat ()
+    {
+
+    int L;
+    int *p;
+
     Imitator N{};
 
-    int N=N.Otmetki (2);
+    L=N.Otmetki (2);
 
-    QVector <int> matrix;
-
-    for(int i = 0; i < N; i++)
+    for(int i = 0; i < L; i++)
     {
-        matrix.push_back()
+        p=N.KT(i);
+        matrix.push_back(p);
+    }
+
+    qDebug()<<matrix;
+
     }
 };
 
@@ -63,21 +80,14 @@ int main()
 {
     auto start = clock();
     srand( time( 0 ) );
-    int N1;
+    int* N1;
 
-    Imitator N{};
+    Cont K{};
 
+    K.Vozvrat();
 
+    cout<<endl<<endl;
 
-    N1=N.Otmetki (2);
-
-    cout<<N1<<endl<<endl;
-
-    while (true)
-    {
-        N.KT();
-        sleep(6);
-    }
 
     /*
     float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
