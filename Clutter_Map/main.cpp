@@ -15,34 +15,30 @@ public:
     float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
     int N;
 
-    float Otmetki (float P)
+    int Otmetki (float P)
     {
         float V;
 
         //Вычисление объёма заданной области
         V=((AzMax-AzMin)/360)*2/3*3.14*(pow((RastMax-RastMin), 3))*(1-(cos(ZenMax-ZenMin))/2);
+        cout<<"V= "<<V<<" metrov"<<endl;
 
         //Вычисление количества ложных помех на основе заданной плотности и расчитанного объёма
         N=round(P*V);
+        cout<<"N= "<<N<<" otmetok"<<endl;
 
         return N;
     }
 
-    int* KT (int j)
+    int* KT ()
     {
-        float Rast, Az, Zen;
+        int Rast, Az, Zen;
 
         Rast=RastMin + rand() % int(RastMax-RastMin);
         Zen=ZenMin + rand() % int(ZenMax-ZenMin);
         Az=AzMin + rand() % int(AzMax-AzMin);
 
-
-        int *k=&j;
-
-        cout<<*k<<endl;
-
-        return &j;
-
+        return &Rast;
 
     }
 
@@ -58,7 +54,7 @@ class Cont
     {
 
     int L;
-    int *p;
+    int *a;
 
     Imitator N{};
 
@@ -66,13 +62,17 @@ class Cont
 
     for(int i = 0; i < L; i++)
     {
-        p=N.KT(i);
-        matrix.push_back(p);
+        matrix.push_back(a=N.KT());
     }
 
-    qDebug()<<matrix;
-
     }
+
+    void Matrix (int i)
+    {
+        qDebug()<<matrix;
+    }
+
+
 };
 
 
@@ -85,6 +85,8 @@ int main()
     Cont K{};
 
     K.Vozvrat();
+
+    K.Matrix(5);
 
     cout<<endl<<endl;
 
