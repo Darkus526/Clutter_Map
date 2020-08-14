@@ -10,9 +10,11 @@ using namespace std;
 
 class Imitator
 {
+    float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
+    int i;
+
 public:
 
-    float RastMin=0, RastMax=10, AzMin=60, AzMax=120, ZenMin=45, ZenMax=70;
     int N;
 
     int Otmetki (float P)
@@ -25,12 +27,14 @@ public:
 
         //Вычисление количества ложных помех на основе заданной плотности и расчитанного объёма
         N=round(P*V);
-        cout<<"N= "<<N<<" otmetok"<<endl;
+        cout<<endl<<"N= "<<N<<" otmetok"<<endl;
 
         return N;
     }
 
-    int* KT ()
+    void set_i (int val) {i=val;}
+
+    int KT ()
     {
         int Rast, Az, Zen;
 
@@ -38,8 +42,7 @@ public:
         Zen=ZenMin + rand() % int(ZenMax-ZenMin);
         Az=AzMin + rand() % int(AzMax-AzMin);
 
-        return &Rast;
-
+        if (i=0) return Rast; else if (i=1) return Az; else return Zen;
     }
 
 };
@@ -54,30 +57,45 @@ class Cont
     {
 
     int L;
-    int *a;
 
     Imitator N{};
 
     L=N.Otmetki (2);
 
-    for(int i = 0; i < L; i++)
+    Imitator K[3], *p;
+
+    K[0].set_i(0);
+    K[1].set_i(1);
+    K[2].set_i(2);
+
+    p=&K[0];
+
+    for (int i=1; i<L; i++)
+
     {
-        matrix.push_back(a=N.KT());
-    }
+
+    p->KT();
+    cout<<p<<endl;
+    p++;
+    p->KT();
+    cout<<p<<endl;
+
+    p++;
+    p->KT();
+    cout<<p<<endl;
+
+    p--;
+    p--;
 
     }
 
-    void Matrix (int i)
-    {
-        qDebug()<<matrix;
     }
-
 
 };
 
-
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     auto start = clock();
     srand( time( 0 ) );
     int* N1;
@@ -85,8 +103,6 @@ int main()
     Cont K{};
 
     K.Vozvrat();
-
-    K.Matrix(5);
 
     cout<<endl<<endl;
 
@@ -99,7 +115,7 @@ int main()
     */
 
     /*
-    setlocale(LC_ALL, "Russian");
+
     srand( time( 0 ) );
 
     QCoreApplication app(argc, argv);
