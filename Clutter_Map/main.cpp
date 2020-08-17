@@ -27,22 +27,36 @@ public:
 
         //Вычисление количества ложных помех на основе заданной плотности и расчитанного объёма
         N=round(P*V);
-        cout<<endl<<"N= "<<N<<" otmetok"<<endl;
+        cout<<endl<<"N= "<<N<<" otmetok"<<endl<<endl;
 
         return N;
     }
 
-    void set_i (int val) {i=val;}
-
-    int KT ()
+    int Rast ()
     {
-        int Rast, Az, Zen;
+        int Rast;
 
         Rast=RastMin + rand() % int(RastMax-RastMin);
-        Zen=ZenMin + rand() % int(ZenMax-ZenMin);
+
+        return Rast;
+    }
+
+    int Az ()
+    {
+        int Az;
+
         Az=AzMin + rand() % int(AzMax-AzMin);
 
-        if (i=0) return Rast; else if (i=1) return Az; else return Zen;
+        return Az;
+    }
+
+    int Zen ()
+    {
+        int Zen;
+
+        Zen=ZenMin + rand() % int(ZenMax-ZenMin);
+
+        return Zen;
     }
 
 };
@@ -51,7 +65,7 @@ class Cont
 {
   public:
 
-    QVector <int*> matrix;
+    QVector <int> matrix;
 
     void Vozvrat ()
     {
@@ -60,34 +74,21 @@ class Cont
 
     Imitator N{};
 
-    L=N.Otmetki (2);
+    L=N.Otmetki (0.025);
 
-    Imitator K[3], *p;
+    Imitator K;
 
-    K[0].set_i(0);
-    K[1].set_i(1);
-    K[2].set_i(2);
-
-    p=&K[0];
-
-    for (int i=1; i<L; i++)
+    for (int i=0; i<L; i++)
 
     {
 
-    p->KT();
-    cout<<p<<endl;
-    p++;
-    p->KT();
-    cout<<p<<endl;
-
-    p++;
-    p->KT();
-    cout<<p<<endl;
-
-    p--;
-    p--;
+    matrix.push_back(K.Rast());
 
     }
+
+    cout<<endl<<endl;
+
+    qDebug()<<matrix;
 
     }
 
